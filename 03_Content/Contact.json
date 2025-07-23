@@ -1,0 +1,16 @@
+{
+    "physicalAddress": {
+        "street": "Rejskova 30",
+        "city": "Prostejov",
+        "country": "Czechia",
+        "postalCode": ""
+    },
+    "contactInfo": {
+        "phone": "+420 704286203",
+        "email": "barosenka@seznam.cz"
+    },
+    "socialMedia": {
+        "facebook": "https://www.facebook.com/baja.baruska",
+        "instagram": ""
+    }
+}
