@@ -1,13 +1,29 @@
 async function loadConfig() {
-    // Change from relative to absolute path
-    const response = await fetch('/Kadernictvi_Bara/01_Assets/03_JS/01_config.json');
-    return response.json();
+    try {
+        const response = await fetch('./01_Assets/03_JS/01_config.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Config loaded successfully:', data);
+        return data;
+    } catch (error) {
+        console.error('Failed to load config:', error);
+        throw error;
+    }
 }
 
 async function loadComponent(name) {
-    // Change from relative to absolute path
-    const response = await fetch(`/Kadernictvi_Bara/01_Assets/03_JS/02_Components/${name}.html`);
-    return response.text();
+    try {
+        const response = await fetch(`./01_Assets/03_JS/02_Components/${name}.html`);
+        if (!response.ok) {
+            throw new Error(`Failed to load ${name} component: ${response.status}`);
+        }
+        return response.text();
+    } catch (error) {
+        console.error(`Error loading ${name} component:`, error);
+        throw error;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
