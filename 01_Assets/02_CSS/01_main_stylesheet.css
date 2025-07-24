@@ -1,0 +1,24 @@
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
+.custom-nav-btn {
+    border: none !important;
+    background: transparent !important;
+    color: #000 !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    transition: background 0.3s;
+    padding: 1.5rem 6rem !important;
+    border-radius: 0.5rem !important;
+}
+
+.custom-nav-btn:hover, .custom-nav-btn:focus {
+    background: #ffe6f0 !important;
+    color: #000 !important;
+}
+
+.bg-mustard {
+    background-color: #ffd18c !important;
+}
