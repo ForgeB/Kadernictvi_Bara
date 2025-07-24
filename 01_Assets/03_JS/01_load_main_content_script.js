@@ -15,7 +15,7 @@ async function loadConfig() {
 
 async function loadComponent(name) {
     try {
-        const response = await fetch(`./01_Assets/03_JS/02_Components/${name}.html`);
+        const response = await fetch(`./02_Components/${name}.html`);
         if (!response.ok) {
             throw new Error(`Failed to load ${name} component: ${response.status}`);
         }
@@ -32,11 +32,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.log('Config loaded:', config); // Debug log
 
         // Load components with error checking
-        const header = await loadComponent('header');
+        const header = await loadComponent('02_header');
         if (!header) throw new Error('Header component not loaded');
         document.querySelector('header').outerHTML = header;
 
-        const footer = await loadComponent('footer');
+        const footer = await loadComponent('03_footer');
         if (!footer) throw new Error('Footer component not loaded');
         document.querySelector('footer').outerHTML = footer;
 
