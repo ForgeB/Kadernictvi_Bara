@@ -26,6 +26,36 @@ async function loadComponent(name) {
     }
 }
 
+async function loadContentContact() {
+    try {
+        const response = await fetch('./04_Content/Contant.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Config loaded successfully:', data);
+        return data;
+    } catch (error) {
+        console.error('Failed to load content:', error);
+        throw error;
+    }
+}
+
+async function loadContentStories() {
+    try {
+        const response = await fetch('./04_Content/Stories.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Config loaded successfully:', data);
+        return data;
+    } catch (error) {
+        console.error('Failed to load content:', error);
+        throw error;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', async function() {
     try {
         const config = await loadConfig();
