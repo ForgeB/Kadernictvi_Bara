@@ -1,5 +1,6 @@
 // Main or follow page main page './'; followup page '../';
-basePath = './';
+basePath = '../';
+console.log('basePath:', basePath);
 
 // Load config from JSON file
 async function loadConfig() {
@@ -10,7 +11,7 @@ async function loadConfig() {
     return response.json();
 }
 
-// Load component  from HTML file
+// Load component from HTML file
 async function loadComponent(name) {
         const response = await fetch(`${basePath}02_Components/${name}.html`);
         if (!response.ok) {
@@ -48,12 +49,12 @@ document.addEventListener('DOMContentLoaded', async function() {
         // Load config and page setup
         const config = await loadConfig();
 
-        // Set logos
+        // Set logos using helper function
         setElementSrc('mainLogo', config.logos?.main);
         setElementSrc('facebookLogo', config.logos?.facebook);
         setElementSrc('instagramLogo', config.logos?.instagram);
 
-        // Set social media links
+        // Set social media links using helper function
         setElementHref('facebookLink', config.socialMedia?.facebook);
         setElementHref('instagramLink', config.socialMedia?.instagram);
         setElementHref('homeLink', basePath + 'index.html');
