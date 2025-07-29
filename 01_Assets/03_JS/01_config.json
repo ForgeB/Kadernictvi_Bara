@@ -1,14 +1,14 @@
 {
     "siteName": "Kadeřnictví Bára",
     "navigation": [
-        {"name": "Home", "href": "#home"},
-        {"name": "Services", "href": "#services"},
-        {"name": "About", "href": "#about"},
-        {"name": "Contact", "href": "#contact"}
+        {"name": "O nás", "href": "../03_Pages/about.html"},
+        {"name": "Služby", "href": "../03_Pages/services.html"},
+        {"name": "Stories", "href": "../03_Pages/stories.html"},
+        {"name": "Objednat se", "href": "../03_Pages/connect.html"}
     ],
     "logos": {
-        "main": "./01_Assets/01_IMG/01_Main_Logo.png",
-        "facebook": "./01_Assets/01_IMG/02_FB_Logo.png",
-        "instagram": "./01_Assets/01_IMG/03_INS_Logo.png"
+        "main": "../01_Assets/01_IMG/01_Main_Logo.png",
+        "facebook": "../01_Assets/01_IMG/02_FB_Logo.png",
+        "instagram": "../01_Assets/01_IMG/03_INS_Logo.png"
     }
 }

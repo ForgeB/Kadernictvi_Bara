@@ -1,21 +1,25 @@
+// dynamic location handling
+basePath = location.pathname.includes('/03_Pages/') ? '../' : './';
+
 async function loadConfig() {
     try {
-        const response = await fetch('./01_Assets/03_JS/01_config.json');
+        
+        const response = await fetch(`${basePath}01_Assets/03_JS/01_config.json`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json();
-        console.log('Config loaded successfully:', data);
-        return data;
+
     } catch (error) {
         console.error('Failed to load config:', error);
         throw error;
     }
 }
 
+
+
 async function loadComponent(name) {
     try {
-        const response = await fetch(`./02_Components/${name}.html`);
+        const response = await fetch(`${basePath}02_Components/${name}.html`);
         if (!response.ok) {
             throw new Error(`Failed to load ${name} component: ${response.status}`);
         }
@@ -26,62 +30,32 @@ async function loadComponent(name) {
     }
 }
 
-async function loadContentContact() {
-    try {
-        const response = await fetch('./04_Content/Contant.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log('Config loaded successfully:', data);
-        return data;
-    } catch (error) {
-        console.error('Failed to load content:', error);
-        throw error;
-    }
-}
-
-async function loadContentStories() {
-    try {
-        const response = await fetch('./04_Content/Stories.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log('Config loaded successfully:', data);
-        return data;
-    } catch (error) {
-        console.error('Failed to load content:', error);
-        throw error;
-    }
-}
-
 document.addEventListener('DOMContentLoaded', async function() {
     try {
-        const config = await loadConfig();
-        console.log('Config loaded:', config); // Debug log
 
-        // Load components with error checking
+
+        // Load header and footer
         const header = await loadComponent('02_header');
-        if (!header) throw new Error('Header component not loaded');
         document.querySelector('header').outerHTML = header;
 
         const footer = await loadComponent('03_footer');
-        if (!footer) throw new Error('Footer component not loaded');
         document.querySelector('footer').outerHTML = footer;
 
-        // Check if elements exist before updating
-        const mainNav = document.getElementById('mainNav');
-        if (!mainNav) throw new Error('Navigation element not found');
-        
-        const navHtml = config.navigation.map(item => 
-            `<a href="${item.href}" class="btn btn-outline-primary custom-nav-btn">${item.name}</a>`
-        ).join('');
-        mainNav.innerHTML = navHtml;
+        const yearSpan = document.getElementById('year');
+        yearSpan.textContent = new Date().getFullYear();
+
+        // Load config and logo
+        const config = await loadConfig();
+        console.log('Config loaded:', config);
 
         const mainLogo = document.getElementById('mainLogo');
-        if (!mainLogo) throw new Error('Logo element not found');
         mainLogo.src = config.logos.main;
+
+        // Load navigation buttons
+        const navHtml = config.navigation.map(item => 
+            `<a href="${basePath}${item.href}" class="btn btn-outline-primary custom-nav-btn">${basePath}${item.name}</a>`
+        ).join('');
+        mainNav.innerHTML += navHtml;
 
     } catch (error) {
         console.error('Error initializing page:', error);
