@@ -1,8 +1,8 @@
 {
     "physicalAddress": {
         "street": "Rejskova 30",
-        "city": "Prostejov",
-        "country": "Czechia",
+        "city": "Prostějov",
+        "country": "",
         "postalCode": ""
     },
     "contactInfo": {
@@ -11,6 +11,6 @@
     },
     "socialMedia": {
         "facebook": "https://www.facebook.com/baja.baruska",
-        "instagram": ""
+        "instagram": "https://www.instagram.com/baja.baruska"
     }
 }

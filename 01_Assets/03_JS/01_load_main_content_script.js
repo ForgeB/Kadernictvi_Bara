@@ -19,7 +19,7 @@ async function loadContactInfo() {
     return response.json();
 }
 
-// Load component  from HTML file
+// Load component from HTML file
 async function loadComponent(name) {
         const response = await fetch(`${basePath}02_Components/${name}.html`);
         if (!response.ok) {
@@ -28,32 +28,32 @@ async function loadComponent(name) {
         return response.text();
 }
 
-// set attributes safely
+// Set source safely
 function setElementSrc(id, src) {
     const element = document.getElementById(id);
     if (element && src) element.src = `${basePath}${src}`;
 }
-
+// Set links safely
 function setElementHref(id, href) {
     const element = document.getElementById(id);
     if (element && href) element.href = href;
 }
-
+// Set strings safely
 function setElementText(id, text) {
     const element = document.getElementById(id);
     if (element && text) element.textContent = text;
 }
 
-// Populate footer with contact information
+// Load footer contact information
 function populateFooter(contactData) {
-    // Set email link
+    // Set email
     const emailLink = document.getElementById('emailLink');
     if (emailLink && contactData.contactInfo?.email) {
         emailLink.href = `mailto:${contactData.contactInfo.email}`;
         emailLink.textContent = contactData.contactInfo.email;
     }
     
-    // Set phone number
+    // Set phone
     setElementText('phoneNumber', contactData.contactInfo?.phone);
     
     // Set address
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             const isInPages = location.pathname.includes('/03_Pages/');
             mainNav.innerHTML = config.navigation.map(item => {
                 const href = isInPages ? `../${item.href}` : item.href;
-                return `<a href="${href}" class="btn btn-outline-primary custom-nav-btn">${item.name}</a>`;
+                return `<a href="${href}" class="btn btn-outline-primary custom-nav-btn">${item.name}<span class="sr-only">&lt;</span></a>`;
             }).join('');
         }
 
