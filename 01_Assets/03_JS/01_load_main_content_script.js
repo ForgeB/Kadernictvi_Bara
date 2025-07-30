@@ -10,6 +10,15 @@ async function loadConfig() {
     return response.json();
 }
 
+// Load contact information from JSON file
+async function loadContactInfo() {
+    const response = await fetch(`${basePath}04_Content/Contact.json`);
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+}
+
 // Load component  from HTML file
 async function loadComponent(name) {
         const response = await fetch(`${basePath}02_Components/${name}.html`);
@@ -30,6 +39,31 @@ function setElementHref(id, href) {
     if (element && href) element.href = href;
 }
 
+function setElementText(id, text) {
+    const element = document.getElementById(id);
+    if (element && text) element.textContent = text;
+}
+
+// Populate footer with contact information
+function populateFooter(contactData) {
+    // Set email link
+    const emailLink = document.getElementById('emailLink');
+    if (emailLink && contactData.contactInfo?.email) {
+        emailLink.href = `mailto:${contactData.contactInfo.email}`;
+        emailLink.textContent = contactData.contactInfo.email;
+    }
+    
+    // Set phone number
+    setElementText('phoneNumber', contactData.contactInfo?.phone);
+    
+    // Set address
+    const address = contactData.physicalAddress;
+    if (address) {
+        const addressText = `${address.street}, ${address.city}${address.postalCode ? ', ' + address.postalCode : ''}, ${address.country}`;
+        setElementText('address', addressText);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', async function() {
     try {
         // Load parallel
@@ -45,8 +79,14 @@ document.addEventListener('DOMContentLoaded', async function() {
         const yearSpan = document.getElementById('year');
         if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-        // Load config and page setup
-        const config = await loadConfig();
+        // Load config and contact data in parallel
+        const [config, contactData] = await Promise.all([
+            loadConfig(),
+            loadContactInfo()
+        ]);
+
+        // Populate footer with contact information
+        populateFooter(contactData);
 
         // Set logos
         setElementSrc('mainLogo', config.logos?.main);
