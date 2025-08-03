@@ -65,11 +65,6 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         // Setup navigation
         setupResponsiveNavigation(config);
-        
-        // Initialize responsive behavior with a small delay to ensure DOM is ready
-        setTimeout(() => {
-            initializeResponsiveBehavior();
-        }, 100);
 
     } catch (error) {
         console.error('Error initializing page:', error);
