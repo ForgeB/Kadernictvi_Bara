@@ -9,7 +9,7 @@ body {
     color: #000 !important;
     font-weight: 600 !important;
     font-size: 16px !important;
-    transition: background 0.3s;
+    transition: margin-right 4s ease-in-out;
     padding: 1.5rem 6rem !important;
     border-radius: 0.5rem !important;
 }
@@ -19,6 +19,6 @@ body {
     color: #000 !important;
 }
 
-.bg-mustard {
-    background-color: #ffd18c !important;
+.bg-rainbow {
+    background-color: #8cffd3 !important;
 }

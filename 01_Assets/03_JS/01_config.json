@@ -1,10 +1,10 @@
 {
     "siteName": "Kadeřnictví Bára",
     "navigation": [
-        {"name": "O nás", "href": "03_Pages/about.html"},
-        {"name": "Služby", "href": "03_Pages/services.html"},
-        {"name": "Stories", "href": "03_Pages/stories.html"},
-        {"name": "Objednat se", "href": "03_Pages/connect.html"}
+        {"name": "O nás", "href": "./about.html"},
+        {"name": "Služby", "href": "./services.html"},
+        {"name": "Stories", "href": "./stories.html"},
+        {"name": "Objednat se", "href": "./connect.html"}
     ],
     "logos": {
         "main": "01_Assets/01_IMG/01_Main_Logo.png",
