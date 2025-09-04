@@ -1,0 +1,21 @@
+# Ignore macOS system files
+.DS_Store
+
+# Ignore other system files
+Thumbs.db
+
+# Ignore log files
+*.log
+
+# Ignore node_modules (if you ever use Node.js)
+node_modules/
+
+# Ignore temporary files
+*.tmp
+*.swp
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore other common files
+.env

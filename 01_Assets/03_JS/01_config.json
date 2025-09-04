@@ -1,10 +1,11 @@
 {
     "siteName": "Kadeřnictví Bára",
     "navigation": [
-        {"name": "O nás", "href": "./about.html"},
-        {"name": "Služby", "href": "./services.html"},
-        {"name": "Stories", "href": "./stories.html"},
-        {"name": "Objednat se", "href": "./connect.html"}
+        {"name": "Služby", "href": "#services"},
+        {"name": "O nás", "href": "#about"},
+        {"name": "Galerie", "href": "#gallery"},
+        {"name": "Kontakt", "href": "#contact"},
+        {"name": "Rezervace", "href": "#booking"}
     ],
     "logos": {
         "main": "01_Assets/01_IMG/01_Main_Logo.png",
@@ -14,5 +15,28 @@
     "socialMedia": {
         "facebook": "https://www.facebook.com/baja.baruska",
         "instagram": "https://www.instagram.com/"
+    },
+    "theme": {
+        "primaryColor": "#667eea",
+        "secondaryColor": "#764ba2",
+        "accentColor": "#f093fb"
+    },
+    "contact": {
+        "phone": "420 704 286 203",
+        "email": "barosenka@seznam.cz",
+        "address": {
+            "street": "Rejskova 30",
+            "city": "Prostějov",
+            "zip": "110 00"
+        },
+        "hours": {
+            "monday": "9:00 - 18:00",
+            "tuesday": "9:00 - 18:00",
+            "wednesday": "9:00 - 18:00",
+            "thursday": "9:00 - 18:00",
+            "friday": "9:00 - 18:00",
+            "saturday": "9:00 - 16:00",
+            "sunday": "Zavřeno"
+        }
     }
 }
