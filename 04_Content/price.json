@@ -24,18 +24,22 @@
         "dlouhé vlasy": {"cost": "2100 Kč", "time": "1 hodina"}
     },
     "Melír + střih + foukaná a styling": {
-        "krátké vlasy": {"cost": "1500 Kč", "time": "1 hodina"},
-        "polodlouhé vlasy": {"cost": "1550 Kč", "time": "1 hodina"},
+        "krátké vlasy": {"cost": "1350 Kč", "time": "1 hodina"},
+        "polodlouhé vlasy": {"cost": "1600 Kč", "time": "1 hodina"},
         "dlouhé vlasy": {"cost": "1850 Kč", "time": "1 hodina"},
-        "extra dlouhé vlasy": {"cost": "cena dohodou", "time": "1 hodina"},
-        "přeliv k melíru": {"cost": "cena dohodou", "time": "1 hodina"}
+        "extra dlouhé vlasy": {"cost": "2100 Kč", "time": "1 hodina"},
+        "přeliv k melíru": {"cost": "850 Kč", "time": "1 hodina"},
+        "Balayage": {"cost": "3500 Kč", "time": "1 hodina"},
+        "Foilyage": {"cost": "3200 Kč", "time": "1 hodina"}
     },
-  "Balayage Foilyage": {"cost": "3500 Kč", "time": "1 hodina"},
-  "Stažení barvy": {"cost": "750 Kč", "time": "1 hodina"},
-  "Natočení vlasů": {"cost": "cena dohodou", "time": "1 hodina"},
-  "Účesy dle délky a náročnosti": {"cost": "cena dohodou", "time": "1 hodina"},
-  "Pánský střih": {"cost": "270 Kč", "time": "1 hodina"},
-  "Kúra FusioDose": {"cost": "cena dohodou", "time": "1 hodina"}
-  },
+    "Stažení barvy": {
+        "1 stažení": {"cost": "650 Kč", "time": "1 hodina"},
+        "Natočení vlasů": {"cost": "800 Kč", "time": "1 hodina"},
+        "Účesy dle délky a náročnosti": {"cost": "800 Kč", "time": "1 hodina"},
+        "Pánský střih": {"cost": "270 Kč", "time": "1 hodina"},
+        "Kúra FusioDose": {"cost": "370 Kč", "time": "1 hodina"}
+    }
+
+},
   "note": "Ceny jsou orientační, liší se dle náročnosti a spotřeby materiálu."
 }

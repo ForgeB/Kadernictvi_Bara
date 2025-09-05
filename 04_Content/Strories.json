@@ -1,0 +1,34 @@
+{
+  "stories": [
+    {
+      "id": "01_cop",
+      "title": "Krásný střih - Bob",
+      "image": "04_Content/stories/01_cop.jpeg",
+      "description": "Moderní bob střih, který perfektně rámuje obličej a dodává ženám sebevědomí. Tento časový klassik nikdy nevyjde z módy a hodí se každé ženě."
+    },
+    {
+      "id": "02_lokny",
+      "title": "Romantické lokny",
+      "image": "04_Content/stories/02_lokny.jpeg", 
+      "description": "Nádherné romantické lokny, které dodávají vlasům objem a ženám elegantní vzhled. Ideální pro slavnostní příležitosti nebo romantické večery."
+    },
+    {
+      "id": "03_blonde",
+      "title": "Blond melír",
+      "image": "04_Content/stories/03_blonde.jpeg",
+      "description": "Profesionální blond melír, který zesvětluje vlasy a dodává jim přirozený sluneční vzhled. Perfektní pro jarní a letní období."
+    },
+    {
+      "id": "04_blonde_zmena",
+      "title": "Blond transformace",
+      "image": "04_Content/stories/04_blonde_zmena.jpeg", 
+      "description": "Úplná změna image s profesionálním blond barvením. Dramatická transformace, která dokáže úplně změnit váš vzhled a náladu."
+    },
+    {
+      "id": "05_melir_zmena",
+      "title": "Melír - před a po",
+      "image": "04_Content/stories/05_melir_zmena.jpeg",
+      "description": "Ukázka profesionálního melíru - viditelná změna před a po aplikaci. Melír dodává vlasům hloubku a přirozený vícebarevný efekt."
+    }
+  ]
+}

@@ -211,7 +211,7 @@ function createServiceCard(serviceKey, serviceData, config) {
     serviceImage.src = serviceImages[serviceKey] || '01_Assets/01_IMG/service-hair-styling.jpg';
     serviceImage.alt = `${cleanServiceName} - služba`;
     serviceImage.style.width = '100%';
-    serviceImage.style.height = '150px';
+    serviceImage.style.height = '500px'; // Increased height for bigger images
     serviceImage.style.objectFit = 'cover';
     serviceImage.style.borderRadius = '6px';
     serviceImage.style.marginBottom = '15px';
@@ -281,7 +281,7 @@ function createPricingTable(serviceData) {
         headerRow.innerHTML = `
             <th style="border: 1px solid #ddd; padding: 8px; background-color: #f5f5f5; text-align: left;">Specifikace</th>
             <th style="border: 1px solid #ddd; padding: 8px; background-color: #f5f5f5; text-align: center;">Cena</th>
-            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f5f5f5; text-align: center;">Doba</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f5f5f5; text-align: center;">Čas</th>
         `;
         table.appendChild(headerRow);
 
@@ -305,7 +305,7 @@ function createPricingTable(serviceData) {
         headerRow.innerHTML = `
             <th style="border: 1px solid #ddd; padding: 8px; background-color: #f5f5f5; text-align: left;">Specifikace</th>
             <th style="border: 1px solid #ddd; padding: 8px; background-color: #f5f5f5; text-align: center;">Cena</th>
-            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f5f5f5; text-align: center;">Doba</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f5f5f5; text-align: center;">Čas</th>
         `;
         table.appendChild(headerRow);
 
@@ -327,6 +327,290 @@ function createPricingTable(serviceData) {
 
     return tableContainer;
 }
+
+// =================================
+// GALLERY FUNCTIONALITY
+// =================================
+
+// Load and display gallery data
+let galleryLoaded = false;
+async function loadGallery() {
+    if (galleryLoaded) {
+        console.log('Gallery already loaded, skipping...');
+        return;
+    }
+    
+    try {
+        const response = await fetch('04_Content/Strories.json');
+        const galleryData = await response.json();
+        populateGallery(galleryData);
+        galleryLoaded = true;
+    } catch (error) {
+        console.error('Error loading gallery:', error);
+    }
+}
+
+function populateGallery(galleryData) {
+    const galleryContainer = document.querySelector('#gallery .gallery-grid');
+    if (!galleryContainer) return;
+
+    // Clear existing content
+    galleryContainer.innerHTML = '';
+
+    // Create gallery items
+    galleryData.stories.forEach(story => {
+        const galleryItem = createGalleryItem(story);
+        galleryContainer.appendChild(galleryItem);
+    });
+
+    // Initialize modal functionality
+    initGalleryModal();
+}
+
+function createGalleryItem(story) {
+    const galleryItem = document.createElement('div');
+    galleryItem.className = 'gallery-item';
+    galleryItem.style.cursor = 'pointer';
+    galleryItem.style.position = 'relative';
+    galleryItem.style.overflow = 'hidden';
+    galleryItem.style.borderRadius = '10px';
+    galleryItem.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+    galleryItem.style.backgroundColor = 'white';
+    galleryItem.style.boxShadow = '0 3px 15px rgba(0,0,0,0.1)';
+
+    // Image
+    const image = document.createElement('img');
+    image.src = story.image;
+    image.alt = story.title;
+    image.style.width = '100%';
+    image.style.height = '250px';
+    image.style.objectFit = 'cover';
+    image.style.transition = 'transform 0.3s ease';
+
+    // Overlay with title
+    const overlay = document.createElement('div');
+    overlay.className = 'gallery-overlay';
+    overlay.style.position = 'absolute';
+    overlay.style.bottom = '0';
+    overlay.style.left = '0';
+    overlay.style.right = '0';
+    overlay.style.background = 'linear-gradient(transparent, rgba(0,0,0,0.7))';
+    overlay.style.color = 'white';
+    overlay.style.padding = '20px 15px 15px';
+    overlay.style.transform = 'translateY(100%)';
+    overlay.style.transition = 'transform 0.3s ease';
+
+    const title = document.createElement('h3');
+    title.textContent = story.title;
+    title.style.fontSize = '1.1rem';
+    title.style.fontWeight = '600';
+    title.style.margin = '0';
+
+    overlay.appendChild(title);
+
+    // Hover effects
+    galleryItem.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px)';
+        this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+        image.style.transform = 'scale(1.1)';
+        overlay.style.transform = 'translateY(0)';
+    });
+
+    galleryItem.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 3px 15px rgba(0,0,0,0.1)';
+        image.style.transform = 'scale(1)';
+        overlay.style.transform = 'translateY(100%)';
+    });
+
+    // Click to open modal
+    galleryItem.addEventListener('click', function() {
+        openGalleryModal(story);
+    });
+
+    galleryItem.appendChild(image);
+    galleryItem.appendChild(overlay);
+
+    return galleryItem;
+}
+
+function initGalleryModal() {
+    // Create modal if it doesn't exist
+    let modal = document.getElementById('gallery-modal');
+    if (!modal) {
+        modal = createGalleryModal();
+        document.body.appendChild(modal);
+    }
+}
+
+function createGalleryModal() {
+    const modal = document.createElement('div');
+    modal.id = 'gallery-modal';
+    modal.className = 'gallery-modal';
+    modal.style.display = 'none';
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.backgroundColor = 'rgba(0,0,0,0.9)';
+    modal.style.zIndex = '2000';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+    modal.style.padding = '20px';
+
+    const modalContent = document.createElement('div');
+    modalContent.className = 'gallery-modal-content';
+    modalContent.style.backgroundColor = 'white';
+    modalContent.style.borderRadius = '15px';
+    modalContent.style.maxWidth = 'fit-content';
+    modalContent.style.maxHeight = 'fit-content';
+    modalContent.style.overflow = 'auto';
+    modalContent.style.position = 'relative';
+    modalContent.style.animation = 'modalSlideIn 0.3s ease';
+    modalContent.style.display = 'flex';
+    modalContent.style.flexDirection = 'column';
+
+    // Close button
+    const closeButton = document.createElement('button');
+    closeButton.innerHTML = '<i class="fas fa-times"></i>';
+    closeButton.style.position = 'absolute';
+    closeButton.style.top = '15px';
+    closeButton.style.right = '15px';
+    closeButton.style.background = 'rgba(0,0,0,0.5)';
+    closeButton.style.color = 'white';
+    closeButton.style.border = 'none';
+    closeButton.style.borderRadius = '50%';
+    closeButton.style.width = '40px';
+    closeButton.style.height = '40px';
+    closeButton.style.fontSize = '16px';
+    closeButton.style.cursor = 'pointer';
+    closeButton.style.zIndex = '10';
+    closeButton.style.transition = 'background-color 0.3s ease';
+
+    closeButton.addEventListener('mouseenter', function() {
+        this.style.backgroundColor = 'rgba(0,0,0,0.8)';
+    });
+
+    closeButton.addEventListener('mouseleave', function() {
+        this.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    });
+
+    closeButton.addEventListener('click', function() {
+        closeGalleryModal();
+    });
+
+    const modalImage = document.createElement('img');
+    modalImage.id = 'modal-image';
+    modalImage.style.width = 'auto';
+    modalImage.style.height = 'auto';
+    modalImage.style.maxWidth = '90vw';
+    modalImage.style.maxHeight = '80vh';
+    modalImage.style.objectFit = 'contain';
+    modalImage.style.borderRadius = '15px 15px 0 0';
+
+    const modalText = document.createElement('div');
+    modalText.id = 'modal-text';
+    modalText.style.padding = '25px';
+
+    const modalTitle = document.createElement('h2');
+    modalTitle.id = 'modal-title';
+    modalTitle.style.fontSize = '1.8rem';
+    modalTitle.style.fontWeight = '600';
+    modalTitle.style.color = '#2c3e50';
+    modalTitle.style.marginBottom = '15px';
+
+    const modalDescription = document.createElement('p');
+    modalDescription.id = 'modal-description';
+    modalDescription.style.fontSize = '1rem';
+    modalDescription.style.lineHeight = '1.6';
+    modalDescription.style.color = '#666';
+
+    modalText.appendChild(modalTitle);
+    modalText.appendChild(modalDescription);
+
+    modalContent.appendChild(closeButton);
+    modalContent.appendChild(modalImage);
+    modalContent.appendChild(modalText);
+
+    modal.appendChild(modalContent);
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeGalleryModal();
+        }
+    });
+
+    // Add CSS animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes modalSlideIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 15px;
+            }
+            
+            .gallery-modal-content {
+                margin: 10px;
+                max-width: calc(100% - 20px);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    return modal;
+}
+
+function openGalleryModal(story) {
+    const modal = document.getElementById('gallery-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+
+    if (modal && modalImage && modalTitle && modalDescription) {
+        modalImage.src = story.image;
+        modalImage.alt = story.title;
+        modalTitle.textContent = story.title;
+        modalDescription.textContent = story.description;
+
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+}
+
+function closeGalleryModal() {
+    const modal = document.getElementById('gallery-modal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeGalleryModal();
+    }
+});
 
 /**
  * Build navigation menu from configuration
@@ -468,7 +752,90 @@ function populateContent(config) {
         aboutText.textContent = config.content.aboutText;
     }
 
+    // Populate contact section
+    populateContactSection(config);
+
     console.log('📝 Content populated from configuration');
+}
+
+/**
+ * Populate contact section with contact details
+ */
+function populateContactSection(config) {
+    const contactDetails = document.querySelector('.contact-details');
+    if (!contactDetails || !config?.contact) return;
+
+    // Clear existing content
+    contactDetails.innerHTML = '';
+
+    // Contact information container
+    const contactInfo = document.createElement('div');
+    contactInfo.className = 'contact-info-container';
+
+    // Contact title
+    const contactTitle = document.createElement('h3');
+    contactTitle.textContent = 'Kontaktní informace';
+    contactInfo.appendChild(contactTitle);
+
+    // Phone
+    if (config.contact.phone) {
+        const phoneDiv = document.createElement('div');
+        phoneDiv.className = 'contact-item';
+        phoneDiv.innerHTML = `
+            <i class="fas fa-phone"></i>
+            <strong>Telefon:</strong> <a href="tel:${config.contact.phone}">${config.contact.phone}</a>
+        `;
+        contactInfo.appendChild(phoneDiv);
+    }
+
+    // Email
+    if (config.contact.email) {
+        const emailDiv = document.createElement('div');
+        emailDiv.className = 'contact-item';
+        emailDiv.innerHTML = `
+            <i class="fas fa-envelope"></i>
+            <strong>Email:</strong> <a href="mailto:${config.contact.email}">${config.contact.email}</a>
+        `;
+        contactInfo.appendChild(emailDiv);
+    }
+
+    // Address
+    if (config.contact.address) {
+        const addressDiv = document.createElement('div');
+        addressDiv.className = 'contact-item';
+        const address = config.contact.address;
+        addressDiv.innerHTML = `
+            <i class="fas fa-map-marker-alt"></i>
+            <strong>Adresa:</strong> ${address.street}, ${address.city}, ${address.zip}
+        `;
+        contactInfo.appendChild(addressDiv);
+    }
+
+    // Hours
+    if (config.contact.hours) {
+        const hoursDiv = document.createElement('div');
+        hoursDiv.className = 'contact-item';
+        
+        const hoursTitle = document.createElement('h4');
+        hoursTitle.innerHTML = '<i class="fas fa-clock"></i><strong>Otevírací doba:</strong>';
+        hoursDiv.appendChild(hoursTitle);
+
+        const hoursList = document.createElement('ul');
+        hoursList.style.listStyle = 'none';
+        hoursList.style.padding = '0';
+        hoursList.style.marginLeft = '30px';
+
+        Object.entries(config.contact.hours).forEach(([day, hours]) => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${capitalizeCz(day)}:</strong> ${hours}`;
+            hoursList.appendChild(li);
+        });
+
+        hoursDiv.appendChild(hoursList);
+        contactInfo.appendChild(hoursDiv);
+    }
+
+    contactDetails.appendChild(contactInfo);
 }
 
 /**
@@ -896,6 +1263,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         populateContent(config);
         populateFooter(config);
         loadServices(config);
+        loadGallery(); // Load gallery content from Stories.json
         
         // Initialize core functionality after navigation is built
         initHeaderScrollEffect();
@@ -919,6 +1287,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.error('❌ Error during initialization:', error);
         
         // Initialize with default functionality even if config fails
+        loadGallery(); // Load gallery even if config fails
         initHeaderScrollEffect();
         initMobileMenu();
         initSmoothScrolling();
@@ -967,5 +1336,9 @@ window.BaraSalon = {
         populateContent(config);
         populateFooter(config);
         return config;
-    }
+    },
+    // Gallery functions
+    loadGallery,
+    openGalleryModal,
+    closeGalleryModal
 };

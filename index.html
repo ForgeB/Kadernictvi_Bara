@@ -53,6 +53,99 @@
         #main-content {
             margin-top: 0;
         }
+
+        /* Contact Section Styling */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin-top: 30px;
+            min-height: 400px;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 40px;
+            color: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-details h3 {
+            color: #2c3e50 !important;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .contact-item i {
+            color: #667eea !important;
+            margin-right: 15px;
+            width: 20px;
+        }
+
+        .contact-item a {
+            color: #667eea !important;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: #2c3e50 !important;
+        }
+
+        .contact-map {
+            overflow: hidden;
+        }
+
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .contact-full-width-image {
+            width: 100%;
+            margin-top: 30px;
+            overflow: hidden;
+        }
+
+        .full-width-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .full-width-img:hover {
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .contact-info {
+                min-height: 300px;
+                padding: 30px 20px;
+            }
+            
+            .contact-map iframe {
+                height: 300px;
+                min-height: 300px;
+            }
+        }
     </style>
 </head>
 
@@ -143,7 +236,26 @@
                     <div class="section-divider"></div>
                 </div>
                 <div class="contact-content">
-                    <!-- Contact content will be dynamically loaded -->
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <div class="contact-details">
+                                <!-- Contact details will be dynamically loaded -->
+                            </div>
+                        </div>
+                        <div class="contact-map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2592.3639224598905!2d17.108615577680865!3d49.47763227142299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471257cb6ceeaa07%3A0x6270b1859474b7ab!2zS2FkZcWZbmljdHbDrSBCw6FyYSBLdWJvdsOh!5e0!3m2!1scs!2scz!4v1757104766873!5m2!1scs!2scz" 
+                                    width="100%" 
+                                    height="400" 
+                                    style="border:0; border-radius: 10px;" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                    <div class="contact-full-width-image">
+                        <img src="01_Assets/01_IMG/Foukaná + styling.jpg" alt="Kadeřnictví Bára - Styling" class="full-width-img">
+                    </div>
                 </div>
             </div>
         </section>
