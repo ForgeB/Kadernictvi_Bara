@@ -23,29 +23,309 @@ async function loadConfig() {
         console.log('✅ Configuration loaded successfully:', siteConfig);
         return siteConfig;
     } catch (error) {
-        console.error('❌ Error loading configuration:', error);
-        // Fallback configuration
-        siteConfig = {
-            siteName: "Kadeřnictví Bára",
-            navigation: [
-                {"name": "Služby", "href": "#services"},
-                {"name": "Galerie", "href": "#gallery"},
-                {"name": "O nás", "href": "#about"},
-                {"name": "Kontakt", "href": "#contact"},
-                {"name": "Rezervace", "href": "#booking"}
-            ],
-            logos: {
-                main: "01_Assets/01_IMG/01_Main_Logo.png",
-                facebook: "01_Assets/01_IMG/02_FB_Logo.png",
-                instagram: "01_Assets/01_IMG/03_INS_Logo.png"
-            },
-            socialMedia: {
-                facebook: "https://www.facebook.com/baja.baruska",
-                instagram: "https://www.instagram.com/"
-            }
-        };
-        return siteConfig;
+        console.error('Error loading config:', error);
+        useDefault();
     }
+}
+
+// Load and display services data
+let servicesLoaded = false;
+async function loadServices(config) {
+    if (servicesLoaded) {
+        console.log('Services already loaded, skipping...');
+        return;
+    }
+    
+    try {
+        const response = await fetch(config.content.servicesDataUrl);
+        const servicesData = await response.json();
+        populateServices(servicesData);
+        servicesLoaded = true;
+    } catch (error) {
+        console.error('Error loading services:', error);
+    }
+}
+
+function populateServices(servicesData) {
+    const servicesContainer = document.querySelector('#services .services-grid');
+    if (!servicesContainer) return;
+
+    // Clear existing content
+    servicesContainer.innerHTML = '';
+
+    // Create a simple list container for services
+    const servicesList = document.createElement('div');
+    servicesList.className = 'services-list';
+    servicesList.style.display = 'block';
+    servicesList.style.width = '100%';
+
+    // Create service cards showing only service names (keys)
+    Object.keys(servicesData.services).forEach((serviceKey) => {
+        const serviceData = servicesData.services[serviceKey];
+        const serviceCard = createServiceCard(serviceKey, serviceData, siteConfig);
+        servicesList.appendChild(serviceCard);
+    });
+
+    servicesContainer.appendChild(servicesList);
+
+    // Add brands section from config AFTER services
+    if (siteConfig?.content?.brands && siteConfig.content.brands.length > 0) {
+        const brandsSection = createBrandsSection(siteConfig.content.brands);
+        servicesContainer.appendChild(brandsSection);
+    }
+}
+
+function createBrandsSection(brands) {
+    const brandsContainer = document.createElement('div');
+    brandsContainer.className = 'brands-section';
+    brandsContainer.style.marginBottom = '40px';
+    brandsContainer.style.textAlign = 'center';
+
+    // Brands title
+    const brandsTitle = document.createElement('h3');
+    brandsTitle.textContent = 'Naše značky';
+    brandsTitle.style.fontSize = '1.5rem';
+    brandsTitle.style.fontWeight = '600';
+    brandsTitle.style.color = '#2c3e50';
+    brandsTitle.style.marginBottom = '30px';
+    brandsContainer.appendChild(brandsTitle);
+
+    // Brands grid
+    const brandsGrid = document.createElement('div');
+    brandsGrid.className = 'brands-grid';
+    brandsGrid.style.display = 'flex';
+    brandsGrid.style.justifyContent = 'center';
+    brandsGrid.style.alignItems = 'center';
+    brandsGrid.style.gap = '30px';
+    brandsGrid.style.flexWrap = 'wrap';
+
+    brands.forEach(brand => {
+        const brandItem = document.createElement('div');
+        brandItem.className = 'brand-item';
+        brandItem.style.display = 'flex';
+        brandItem.style.flexDirection = 'column';
+        brandItem.style.alignItems = 'center';
+        brandItem.style.padding = '20px';
+        brandItem.style.backgroundColor = 'white';
+        brandItem.style.borderRadius = '10px';
+        brandItem.style.boxShadow = '0 3px 15px rgba(0,0,0,0.1)';
+        brandItem.style.transition = 'transform 0.3s ease';
+        brandItem.style.cursor = 'pointer';
+
+        // Brand logo
+        const brandLogo = document.createElement('img');
+        brandLogo.src = brand.logo;
+        brandLogo.alt = `${brand.name} logo`;
+        brandLogo.style.height = '60px';
+        brandLogo.style.objectFit = 'contain';
+        brandLogo.style.marginBottom = '10px';
+
+        // Brand name
+        const brandName = document.createElement('span');
+        brandName.textContent = brand.name;
+        brandName.style.fontSize = '0.9rem';
+        brandName.style.fontWeight = '500';
+        brandName.style.color = '#666';
+
+        // Add hover effects
+        brandItem.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        brandItem.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+
+        // Add click handler if website exists
+        if (brand.website) {
+            brandItem.addEventListener('click', function() {
+                window.open(brand.website, '_blank');
+            });
+        }
+
+        brandItem.appendChild(brandLogo);
+        brandItem.appendChild(brandName);
+        brandsGrid.appendChild(brandItem);
+    });
+
+    brandsContainer.appendChild(brandsGrid);
+    return brandsContainer;
+}
+
+function createServiceCard(serviceKey, serviceData, config) {
+    // Create container directly without card wrapper
+    const serviceContainer = document.createElement('div');
+    serviceContainer.className = 'service-item';
+    serviceContainer.style.marginBottom = '2px';
+
+    // Service header (always visible)
+    const serviceHeader = document.createElement('div');
+    serviceHeader.className = 'service-header';
+    serviceHeader.style.padding = '8px 0';
+    serviceHeader.style.cursor = 'pointer';
+    serviceHeader.style.display = 'flex';
+    serviceHeader.style.justifyContent = 'space-between';
+    serviceHeader.style.alignItems = 'center';
+    serviceHeader.style.transition = 'background-color 0.2s ease';
+
+    // Clean service name (remove underscores and special characters)
+    const cleanServiceName = serviceKey.replace(/_/g, ' ').replace(/\+/g, '+');
+
+    // Service title
+    const title = document.createElement('span');
+    title.className = 'service-title';
+    title.textContent = cleanServiceName;
+    title.style.margin = '0';
+    title.style.fontSize = '0.9rem';
+    title.style.fontWeight = '500';
+    title.style.color = '#2c3e50';
+
+    // Expand/collapse icon
+    const expandIcon = document.createElement('i');
+    expandIcon.className = 'fas fa-chevron-down';
+    expandIcon.style.color = '#667eea';
+    expandIcon.style.fontSize = '0.7rem';
+    expandIcon.style.transition = 'transform 0.2s ease';
+
+    serviceHeader.appendChild(title);
+    serviceHeader.appendChild(expandIcon);
+
+    // Service content (initially hidden)
+    const serviceContent = document.createElement('div');
+    serviceContent.className = 'service-content';
+    serviceContent.style.maxHeight = '0';
+    serviceContent.style.overflow = 'hidden';
+    serviceContent.style.transition = 'max-height 0.2s ease';
+    serviceContent.style.marginBottom = '10px';
+
+    // Inner content container
+    const contentInner = document.createElement('div');
+    contentInner.style.paddingLeft = '15px';
+    contentInner.style.paddingTop = '5px';
+
+    // Get service images from config
+    const serviceImages = config?.content?.serviceImages || {};
+
+    // Add service image
+    const serviceImage = document.createElement('img');
+    serviceImage.className = 'service-image';
+    serviceImage.src = serviceImages[serviceKey] || '01_Assets/01_IMG/service-hair-styling.jpg';
+    serviceImage.alt = `${cleanServiceName} - služba`;
+    serviceImage.style.width = '100%';
+    serviceImage.style.height = '150px';
+    serviceImage.style.objectFit = 'cover';
+    serviceImage.style.borderRadius = '6px';
+    serviceImage.style.marginBottom = '15px';
+    
+    // Add error handling for images
+    serviceImage.onerror = function() {
+        console.error('Failed to load image:', this.src);
+        if (!this.src.includes('service-hair-styling.jpg')) {
+            this.src = '01_Assets/01_IMG/service-hair-styling.jpg';
+        } else {
+            this.style.display = 'none';
+            console.error('Fallback image also failed to load');
+        }
+    };
+
+    contentInner.appendChild(serviceImage);
+
+    // Create pricing table
+    const pricingTable = createPricingTable(serviceData);
+    contentInner.appendChild(pricingTable);
+
+    serviceContent.appendChild(contentInner);
+
+    // Add click functionality
+    let isExpanded = false;
+    serviceHeader.addEventListener('click', function() {
+        isExpanded = !isExpanded;
+        
+        if (isExpanded) {
+            serviceContent.style.maxHeight = serviceContent.scrollHeight + 'px';
+            expandIcon.style.transform = 'rotate(180deg)';
+        } else {
+            serviceContent.style.maxHeight = '0';
+            expandIcon.style.transform = 'rotate(0deg)';
+        }
+    });
+
+    // Hover effects on header only
+    serviceHeader.addEventListener('mouseenter', function() {
+        this.style.backgroundColor = '#f8f9fa';
+    });
+
+    serviceHeader.addEventListener('mouseleave', function() {
+        this.style.backgroundColor = 'transparent';
+    });
+
+    serviceContainer.appendChild(serviceHeader);
+    serviceContainer.appendChild(serviceContent);
+
+    return serviceContainer;
+}
+
+function createPricingTable(serviceData) {
+    const tableContainer = document.createElement('div');
+    tableContainer.style.marginTop = '10px';
+
+    // Check if service has multiple options or is a simple service
+    if (typeof serviceData === 'object' && serviceData.cost && serviceData.time) {
+        // Simple service with direct cost and time
+        const table = document.createElement('table');
+        table.style.width = '100%';
+        table.style.borderCollapse = 'collapse';
+        table.style.fontSize = '0.8rem';
+        table.style.marginBottom = '10px';
+
+        const headerRow = document.createElement('tr');
+        headerRow.innerHTML = `
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f5f5f5; text-align: left;">Specifikace</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f5f5f5; text-align: center;">Cena</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f5f5f5; text-align: center;">Doba</th>
+        `;
+        table.appendChild(headerRow);
+
+        const dataRow = document.createElement('tr');
+        dataRow.innerHTML = `
+            <td style="border: 1px solid #ddd; padding: 8px;">Základní služba</td>
+            <td style="border: 1px solid #ddd; padding: 8px; text-align: center; font-weight: 600; color: #667eea;">${serviceData.cost}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${serviceData.time}</td>
+        `;
+        table.appendChild(dataRow);
+        tableContainer.appendChild(table);
+    } else {
+        // Service with multiple options
+        const table = document.createElement('table');
+        table.style.width = '100%';
+        table.style.borderCollapse = 'collapse';
+        table.style.fontSize = '0.8rem';
+        table.style.marginBottom = '10px';
+
+        const headerRow = document.createElement('tr');
+        headerRow.innerHTML = `
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f5f5f5; text-align: left;">Specifikace</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f5f5f5; text-align: center;">Cena</th>
+            <th style="border: 1px solid #ddd; padding: 8px; background-color: #f5f5f5; text-align: center;">Doba</th>
+        `;
+        table.appendChild(headerRow);
+
+        // Add rows for each option
+        Object.entries(serviceData).forEach(([optionKey, optionData]) => {
+            if (optionData && typeof optionData === 'object' && optionData.cost) {
+                const dataRow = document.createElement('tr');
+                dataRow.innerHTML = `
+                    <td style="border: 1px solid #ddd; padding: 8px;">${optionKey}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center; font-weight: 600; color: #667eea;">${optionData.cost}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">${optionData.time || '-'}</td>
+                `;
+                table.appendChild(dataRow);
+            }
+        });
+
+        tableContainer.appendChild(table);
+    }
+
+    return tableContainer;
 }
 
 /**
@@ -68,7 +348,9 @@ function buildNavigation(config) {
     const iconMapping = {
         'Služby': 'fas fa-cut',
         'Galerie': 'fas fa-images',
-        'O nás': 'fas fa-user',
+        'Bára Kubová': 'fas fa-user',
+        'O mně': 'fas fa-user', // Keep for backward compatibility
+        'O nás': 'fas fa-user', // Keep for backward compatibility
         'Kontakt': 'fas fa-envelope',
         'Rezervace': 'fas fa-calendar-alt'
     };
@@ -110,7 +392,7 @@ function updateLogo(config) {
     }
     
     if (logoText) {
-        logoText.textContent = config.siteName.split(' ').pop(); // Use last word of site name
+        logoText.textContent = config.siteName; // Use last word of site name
     }
 
     // Update page title and meta tags
@@ -135,23 +417,16 @@ function updateLogo(config) {
 function addSocialMediaLinks(config) {
     if (!config?.socialMedia) return;
 
-    // Create social media container if it doesn't exist
-    let socialContainer = document.querySelector('.social-media-links');
-    if (!socialContainer) {
-        socialContainer = document.createElement('div');
-        socialContainer.className = 'social-media-links';
-        
-        // Add to footer or create a floating social bar
-        const footer = document.querySelector('footer');
-        if (footer) {
-            footer.appendChild(socialContainer);
-        } else {
-            // Create floating social media bar
-            socialContainer.classList.add('floating-social');
-            document.body.appendChild(socialContainer);
-        }
+    // Remove any existing social media container
+    const existingContainer = document.querySelector('.social-media-links');
+    if (existingContainer) {
+        existingContainer.remove();
     }
 
+    // Always create floating social media bar on the left side
+    const socialContainer = document.createElement('div');
+    socialContainer.className = 'social-media-links floating-social';
+    
     // Build social media links
     let socialLinksHTML = '';
     
@@ -174,7 +449,67 @@ function addSocialMediaLinks(config) {
     }
 
     socialContainer.innerHTML = socialLinksHTML;
-    console.log('📱 Social media links added from configuration');
+    
+    // Add to body as floating element
+    document.body.appendChild(socialContainer);
+    
+    console.log('📱 Social media links added as floating bar on left side');
+}
+
+/**
+ * Populate content sections from configuration
+ */
+function populateContent(config) {
+    if (!config?.content) return;
+
+    // Populate about section
+    const aboutText = document.getElementById('about-text');
+    if (aboutText && config.content.aboutText) {
+        aboutText.textContent = config.content.aboutText;
+    }
+
+    console.log('📝 Content populated from configuration');
+}
+
+/**
+ * Populate footer content from configuration
+ */
+function populateFooter(config) {
+    if (!config?.contact) return;
+
+    // Contact information
+    if (document.getElementById('footer-phone'))
+        document.getElementById('footer-phone').textContent = config.contact.phone;
+    if (document.getElementById('footer-email'))
+        document.getElementById('footer-email').textContent = config.contact.email;
+    if (document.getElementById('footer-address')) {
+        const address = config.contact.address;
+        document.getElementById('footer-address').textContent = `${address.street}, ${address.city}, ${address.zip}`;
+    }
+    
+    // Hours
+    const hoursList = document.getElementById('footer-hours-list');
+    if (hoursList && config.contact.hours) {
+        hoursList.innerHTML = '';
+        Object.entries(config.contact.hours).forEach(([day, hours]) => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${capitalizeCz(day)}:</strong> ${hours}`;
+            hoursList.appendChild(li);
+        });
+    }
+    
+    // Year
+    if (document.getElementById('footer-year'))
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    console.log('🦶 Footer populated from configuration');
+}
+
+/**
+ * Capitalize first letter for Czech day names
+ */
+function capitalizeCz(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 // =================================
@@ -558,6 +893,9 @@ document.addEventListener('DOMContentLoaded', async function() {
         buildNavigation(config);
         updateLogo(config);
         addSocialMediaLinks(config);
+        populateContent(config);
+        populateFooter(config);
+        loadServices(config);
         
         // Initialize core functionality after navigation is built
         initHeaderScrollEffect();
@@ -626,6 +964,8 @@ window.BaraSalon = {
         buildNavigation(config);
         updateLogo(config);
         addSocialMediaLinks(config);
+        populateContent(config);
+        populateFooter(config);
         return config;
     }
 };

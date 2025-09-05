@@ -51,7 +51,7 @@
         }
 
         #main-content {
-            margin-top: 80px;
+            margin-top: 0;
         }
     </style>
 </head>
@@ -80,10 +80,93 @@
 
     <!-- Main Content -->
     <main id="main-content">
-        <!-- Content will be added here -->
+        <!-- Hero/Home Section with Studio Photo -->
+        <section id="home" class="hero-section">
+            <div class="hero-background">
+                <img src="01_Assets/01_IMG/001_studio.jpeg" alt="Kadeřnictví Bára - Interiér salonu" class="hero-image">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-content">
+                <div class="container">
+                    <h1 class="hero-title">Kadeřnictví Bára</h1>
+                    <p class="hero-subtitle">Profesionální péče o vaše vlasy</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section - Covers hero when scrolling -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Bára Kubová</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="about-content">
+                    <div class="about-text" id="about-text">
+                        <!-- Content will be loaded from config -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Naše služby</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="services-grid">
+                    <!-- Services will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Galerie</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="gallery-grid">
+                    <!-- Gallery images will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Kontakt</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="contact-content">
+                    <!-- Contact content will be dynamically loaded -->
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- JavaScript -->
     <script src="01_Assets/03_JS/01_load_main_content_script.js"></script>
+        <footer class="footer">
+            <div class="container footer-content">
+                <div class="footer-contact">
+                    <h3>Kontakt</h3>
+                    <p><strong>Telefon:</strong> <span id="footer-phone"></span></p>
+                    <p><strong>Email:</strong> <span id="footer-email"></span></p>
+                    <p><strong>Adresa:</strong> <span id="footer-address"></span></p>
+                </div>
+                <div class="footer-hours">
+                    <h3>Otevírací doba</h3>
+                    <ul id="footer-hours-list"></ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                &copy; <span id="footer-year"></span> Kadeřnictví Bára. Všechna práva vyhrazena.
+            </div>
+        </footer>
 </body>
 </html>

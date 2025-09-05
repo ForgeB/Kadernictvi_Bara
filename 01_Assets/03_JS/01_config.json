@@ -1,8 +1,8 @@
 {
     "siteName": "Kadeřnictví Bára",
     "navigation": [
+        {"name": "Bára Kubová", "href": "#about"},
         {"name": "Služby", "href": "#services"},
-        {"name": "O nás", "href": "#about"},
         {"name": "Galerie", "href": "#gallery"},
         {"name": "Kontakt", "href": "#contact"},
         {"name": "Rezervace", "href": "#booking"}
@@ -21,8 +21,51 @@
         "secondaryColor": "#764ba2",
         "accentColor": "#f093fb"
     },
+    "content": {
+        "aboutText": "Kadeřnictví Bára je moderní dámský salon, který nabízí širokou škálu služeb pro naše klientky. Naším cílem je poskytnout vám nejen skvělý střih, ale i příjemný zážitek v útulném prostředí. Specializujeme se na profesionální péči o vaše vlasy, abyste se cítili krásně, sebevědomě a spokojeni po každé návštěvě.\n\nNabízíme klasické stříhání, barvení, moderní vlasové úpravy a poradenství v oblasti péče o vlasy. Naše kadeřnice jsou zkušené profesionálky, které sledují nejnovější trendy a techniky v oboru. Používáme kvalitní vlasovou kosmetiku a dbáme na individuální přístup ke každému zákazníkovi.\n\nPřijďte si k nám odpočinout a nechte se hýčkat v příjemném prostředí našeho salonu. Těšíme se na vaši návštěvu!",
+        "servicesDataUrl": "04_Content/price.json",
+        "serviceImages": {
+            "Dámský střih + foukaná a styling": "01_Assets/01_IMG/Foukaná + styling.jpeg",
+            "Foukaná + styling": "01_Assets/01_IMG/service-hair-styling.jpg",
+            "Barvení + střih + foukaná a styling (do 3 cm odrostu)": "01_Assets/01_IMG/service-hair-styling.jpg",
+            "Barvení + střih + foukaná a styling (celá délka vlasů)": "01_Assets/01_IMG/service-hair-styling.jpg",
+            "Melír + střih + foukaná a styling": "01_Assets/01_IMG/service-hair-styling.jpg",
+            "Balayage Foilyage": "01_Assets/01_IMG/service-hair-styling.jpg",
+            "Stažení barvy": "01_Assets/01_IMG/service-hair-styling.jpg",
+            "Natočení vlasů": "01_Assets/01_IMG/service-hair-styling.jpg",
+            "Účesy dle délky a náročnosti": "01_Assets/01_IMG/service-hair-styling.jpg",
+            "Pánský střih": "01_Assets/01_IMG/service-hair-styling.jpg",
+            "Kúra FusioDose": "01_Assets/01_IMG/service-hair-styling.jpg"
+        },
+        "brands": [
+            {
+                "name": "L'Oréal Professionnel",
+                "logo": "01_Assets/01_IMG/loreal-professional-logo.png",
+                "website": "https://www.lorealprofessionnel.com",
+                "description": "Profesionální vlasová kosmetika"
+            },
+            {
+                "name": "Klier",
+                "logo": "01_Assets/01_IMG/klier-logo.png",
+                "website": "https://www.klier.de",
+                "description": "Německá tradice v kadeřnictví"
+            },
+            {
+                "name": "Kérastase",
+                "logo": "01_Assets/01_IMG/kerastase-logo.png",
+                "website": "https://www.kerastase.com",
+                "description": "Luxusní péče o vlasy"
+            },
+            {
+                "name": "Schwarzkopf Professional",
+                "logo": "01_Assets/01_IMG/schwarzkopf-logo.png",
+                "website": "https://www.schwarzkopf-professional.com",
+                "description": "Profesionální vlasové produkty"
+            }
+        ]
+    },
     "contact": {
-        "phone": "420 704 286 203",
+        "phone": "+420 704 286 203",
         "email": "barosenka@seznam.cz",
         "address": {
             "street": "Rejskova 30",
@@ -30,13 +73,13 @@
             "zip": "110 00"
         },
         "hours": {
-            "monday": "9:00 - 18:00",
-            "tuesday": "9:00 - 18:00",
-            "wednesday": "9:00 - 18:00",
-            "thursday": "9:00 - 18:00",
-            "friday": "9:00 - 18:00",
-            "saturday": "9:00 - 16:00",
-            "sunday": "Zavřeno"
+            "pondělí": "9:00 - 18:00",
+            "úterý": "9:00 - 18:00",
+            "středa": "9:00 - 18:00",
+            "čtvrtek": "9:00 - 18:00",
+            "pátek": "9:00 - 18:00",
+            "sobota": "9:00 - 16:00",
+            "neděle": "Zavřeno"
         }
     }
 }

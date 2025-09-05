@@ -1,0 +1,41 @@
+{
+  "co_name": "Kadeřnictví Bára Kubová",
+  "brand": ["L'Oréal Professionnel", "Klier", "Kérastase", "Schwarzkopf Professional"],
+  "services": {
+    "Dámský střih + foukaná a styling": {
+        "krátké vlasy": {"cost": "400 Kč", "time": "1 hodina"},
+        "polodlouhé vlasy": {"cost": "550 Kč", "time": "1 hodina"},
+        "dlouhé vlasy": {"cost": "700 Kč", "time": "1 hodina"}
+    },
+    "Foukaná + styling": {
+        "krátké vlasy": {"cost": "300 Kč", "time": "1 hodina"},
+        "polodlouhé vlasy": {"cost": "400 Kč", "time": "1 hodina"},
+        "dlouhé vlasy": {"cost": "450 Kč", "time": "1 hodina"}
+    },
+    "Barvení + střih + foukaná a styling (do 3 cm odrostu)": {
+        "krátké vlasy": {"cost": "1200 Kč", "time": "1 hodina"},
+        "polodlouhé vlasy": {"cost": "1300 Kč", "time": "1 hodina"},
+        "dlouhé vlasy": {"cost": "1400 Kč", "time": "1 hodina"},
+        "maska Kérastase": {"cost": "150 Kč", "time": "1 hodina"}
+    },
+    "Barvení + střih + foukaná a styling (celá délka vlasů)": {
+        "krátké vlasy": {"cost": "1400 Kč", "time": "1 hodina"},
+        "polodlouhé vlasy": {"cost": "1800 Kč", "time": "1 hodina"},
+        "dlouhé vlasy": {"cost": "2100 Kč", "time": "1 hodina"}
+    },
+    "Melír + střih + foukaná a styling": {
+        "krátké vlasy": {"cost": "1500 Kč", "time": "1 hodina"},
+        "polodlouhé vlasy": {"cost": "1550 Kč", "time": "1 hodina"},
+        "dlouhé vlasy": {"cost": "1850 Kč", "time": "1 hodina"},
+        "extra dlouhé vlasy": {"cost": "cena dohodou", "time": "1 hodina"},
+        "přeliv k melíru": {"cost": "cena dohodou", "time": "1 hodina"}
+    },
+  "Balayage Foilyage": {"cost": "3500 Kč", "time": "1 hodina"},
+  "Stažení barvy": {"cost": "750 Kč", "time": "1 hodina"},
+  "Natočení vlasů": {"cost": "cena dohodou", "time": "1 hodina"},
+  "Účesy dle délky a náročnosti": {"cost": "cena dohodou", "time": "1 hodina"},
+  "Pánský střih": {"cost": "270 Kč", "time": "1 hodina"},
+  "Kúra FusioDose": {"cost": "cena dohodou", "time": "1 hodina"}
+  },
+  "note": "Ceny jsou orientační, liší se dle náročnosti a spotřeby materiálu."
+}
