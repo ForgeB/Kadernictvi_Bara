@@ -4,13 +4,13 @@
       "id": "01_cop",
       "title": "Krásný střih - Bob",
       "image": "04_Content/stories/01_cop.jpeg",
-      "description": "Moderní bob střih, který perfektně rámuje obličej a dodává ženám sebevědomí. Tento časový klassik nikdy nevyjde z módy a hodí se každé ženě."
+      "description": "Klientka si přála něco výjimečného pro obyčejný den. Vznikl sofistikovaný drdol s jemnými vlnami, který podtrhl její přirozenou eleganci. U nás v Kadeřnictví Bára věříme, že každý den si zaslouží trochu péče navíc."
     },
     {
-      "id": "02_lokny",
-      "title": "Romantické lokny",
-      "image": "04_Content/stories/02_lokny.jpeg", 
-      "description": "Nádherné romantické lokny, které dodávají vlasům objem a ženám elegantní vzhled. Ideální pro slavnostní příležitosti nebo romantické večery."
+      "id": "02_plavovlaska",
+      "title": "Plavovlasé lokny",
+      "image": "04_Content/stories/02_plavovlaska.jpeg", 
+      "description": "Klientka si přála jemnou změnu, která podtrhne její styl bez zbytečného dramatu. Výsledkem je hladký, vrstvený střih s kombinací studených blond tónů a světle hnědých odstínů. Přirozené melíry dodaly hloubku a lesk, který vynikne v každém světle."
     },
     {
       "id": "03_blonde",
@@ -19,16 +19,40 @@
       "description": "Profesionální blond melír, který zesvětluje vlasy a dodává jim přirozený sluneční vzhled. Perfektní pro jarní a letní období."
     },
     {
-      "id": "04_blonde_zmena",
-      "title": "Blond transformace",
-      "image": "04_Content/stories/04_blonde_zmena.jpeg", 
-      "description": "Úplná změna image s profesionálním blond barvením. Dramatická transformace, která dokáže úplně změnit váš vzhled a náladu."
+      "id": "04_svatebni_uces",
+      "title": "Svatební účes",
+      "image": "04_Content/stories/04_svatebni_uces.jpeg", 
+      "description": "Jemné melíry, čistý střih a zářivý výsledek—vše s láskou v Kadeřnictví Bára. Protože každá nevěsta si zaslouží cítit se výjimečně."
     },
     {
       "id": "05_melir_zmena",
       "title": "Melír - před a po",
       "image": "04_Content/stories/05_melir_zmena.jpeg",
       "description": "Ukázka profesionálního melíru - viditelná změna před a po aplikaci. Melír dodává vlasům hloubku a přirozený vícebarevný efekt."
+    },
+    {
+      "id": "06_foyliage_s_prelivem",
+      "title": "Fóliage s přelivem - před a po",
+      "image": "04_Content/stories/06_foyliage_s_prelivem.jpeg",
+      "description": "Někdy stačí jen chuť na změnu. Klientka si přála oživit barvu a dodat vlasům jemný přechod mezi teplou hnědou a studenou blond. Výsledek? Přirozený ombré efekt, který působí svěže, moderně a zároveň nenápadně."
+    },
+    {
+      "id": "07_preliv_ton_v_tonu",
+      "title": "Přeliv - ton v tonu",
+      "image": "04_Content/stories/07_preliv_ton_v_tonu.jpeg",
+      "description": "Klientka přišla s krásnou délkou a jemným barevným přechodem, ale cítila, že její účes potřebuje nový tvar. Po precizním střihu zůstala zachována barevná harmonie, ale celkový vzhled působí svěže, lehce a upraveně."
+    },
+    {
+      "id": "08_foyliage_s_prelivem",
+      "title": "Fóliage s přelivem - před a po",
+      "image": "04_Content/stories/08_foyliage_s_prelivem.jpeg",
+      "description": "Jedna klientka, dva styly. Na jedné straně chladný, popelavý blond s jemnými odlesky, na druhé teplejší zlatavý tón s výraznějšími kontrasty. Každý odstín má své kouzlo—záleží jen na náladě a osobním stylu."
+    },
+    {
+      "id": "09_svatebni_uces",
+      "title": "Svatební účes - před a po",
+      "image": "04_Content/stories/09_svatebni_uces.jpeg",
+      "description": "Tahle nevěsta si přála účes, který bude působit romanticky, ale zároveň vydrží celý den plný emocí. Vznikl bohatý drdol z propletených copánků a vln, který dokonale ladil s jejím stylem i atmosférou svatebního dne."
     }
   ]
 }

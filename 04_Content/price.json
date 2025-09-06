@@ -3,43 +3,45 @@
   "brand": ["L'Oréal Professionnel", "Klier", "Kérastase", "Schwarzkopf Professional"],
   "services": {
     "Dámský střih + foukaná a styling": {
-        "krátké vlasy": {"cost": "400 Kč", "time": "1 hodina"},
-        "polodlouhé vlasy": {"cost": "550 Kč", "time": "1 hodina"},
-        "dlouhé vlasy": {"cost": "700 Kč", "time": "1 hodina"}
+        "krátké vlasy": {"cost": "400 Kč", "time": "30 minut až 1 hodina"},
+        "polodlouhé vlasy": {"cost": "550 Kč", "time": "45 minut až 1 hodina"},
+        "dlouhé vlasy": {"cost": "700 Kč", "time": "1 až 1,5 hodiny"}
     },
     "Foukaná + styling": {
-        "krátké vlasy": {"cost": "300 Kč", "time": "1 hodina"},
-        "polodlouhé vlasy": {"cost": "400 Kč", "time": "1 hodina"},
-        "dlouhé vlasy": {"cost": "450 Kč", "time": "1 hodina"}
+        "krátké vlasy": {"cost": "300 Kč", "time": "30 minut až 1 hodina"},
+        "polodlouhé vlasy": {"cost": "400 Kč", "time": "40 minut až 1 hodina"},
+        "dlouhé vlasy": {"cost": "450 Kč", "time": "50 minut až 1,5 hodiny"}
     },
     "Barvení + střih + foukaná a styling (do 3 cm odrostu)": {
-        "krátké vlasy": {"cost": "1200 Kč", "time": "1 hodina"},
-        "polodlouhé vlasy": {"cost": "1300 Kč", "time": "1 hodina"},
-        "dlouhé vlasy": {"cost": "1400 Kč", "time": "1 hodina"},
+        "krátké vlasy": {"cost": "1200 Kč", "time": "1,5 až 2 hodiny"},
+        "polodlouhé vlasy": {"cost": "1300 Kč", "time": "2 až 3 hodiny"},
+        "dlouhé vlasy": {"cost": "1400 Kč", "time": "2,5 až 3 hodiny"},
         "maska Kérastase": {"cost": "150 Kč", "time": "1 hodina"}
     },
     "Barvení + střih + foukaná a styling (celá délka vlasů)": {
-        "krátké vlasy": {"cost": "1400 Kč", "time": "1 hodina"},
-        "polodlouhé vlasy": {"cost": "1800 Kč", "time": "1 hodina"},
-        "dlouhé vlasy": {"cost": "2100 Kč", "time": "1 hodina"}
+    "krátké vlasy": {"cost": "1400 Kč", "time": "2 až 2,5 hodiny"},
+    "polodlouhé vlasy": {"cost": "1800 Kč", "time": "2,5 až 3,5 hodiny"},
+    "dlouhé vlasy": {"cost": "2100 Kč", "time": "3 až 3,5 hodiny"}
     },
     "Melír + střih + foukaná a styling": {
-        "krátké vlasy": {"cost": "1350 Kč", "time": "1 hodina"},
-        "polodlouhé vlasy": {"cost": "1600 Kč", "time": "1 hodina"},
-        "dlouhé vlasy": {"cost": "1850 Kč", "time": "1 hodina"},
-        "extra dlouhé vlasy": {"cost": "2100 Kč", "time": "1 hodina"},
-        "přeliv k melíru": {"cost": "850 Kč", "time": "1 hodina"},
-        "Balayage": {"cost": "3500 Kč", "time": "1 hodina"},
-        "Foilyage": {"cost": "3200 Kč", "time": "1 hodina"}
+        "krátké vlasy": {"cost": "1350 Kč", "time": "1,5 až 2 hodiny"},
+        "polodlouhé vlasy": {"cost": "1600 Kč", "time": "2 až 2,5 hodiny"},
+        "dlouhé vlasy": {"cost": "1850 Kč", "time": "2,5 až 3,5 hodiny"},
+        "extra dlouhé vlasy": {"cost": "2100 Kč", "time": "3 až 4 hodiny"},
+        "přeliv k melíru": {"cost": "850 Kč", "time": "1 až 2 hodiny"},
+        "Balayage": {"cost": "3500 Kč", "time": "3 až 4 hodiny"},
+        "Foilyage": {"cost": "3200 Kč", "time": "2,5 až 4 hodiny"}
     },
     "Stažení barvy": {
-        "1 stažení": {"cost": "650 Kč", "time": "1 hodina"},
-        "Natočení vlasů": {"cost": "800 Kč", "time": "1 hodina"},
-        "Účesy dle délky a náročnosti": {"cost": "800 Kč", "time": "1 hodina"},
-        "Pánský střih": {"cost": "270 Kč", "time": "1 hodina"},
-        "Kúra FusioDose": {"cost": "370 Kč", "time": "1 hodina"}
+        "1 stažení": {"cost": "650 Kč", "time": "50 minut až 1,5 hodiny"},
+        "Natočení vlasů": {"cost": "800 Kč", "time": "1 až 1,5 hodiny"},
+        "Účesy dle délky a náročnosti": {"cost": "800 Kč", "time": "1 až 2 hodiny"},
+        "Pánský střih": {"cost": "270 Kč", "time": "15 minut až 45 minut"},
+        "Kúra FusioDose": {"cost": "370 Kč", "time": "30 minut až 1 hodina"}
     }
 
 },
-  "note": "Ceny jsou orientační, liší se dle náročnosti a spotřeby materiálu."
+  "note1": "Ceny jsou orientační, liší se dle náročnosti a spotřeby materiálu.",
+  "note2": "Čas je pouze orientační. U každého klienta se doba liší dle hustoty a délky vlasů.",
+  "note3": "Vše závisí na požadavcích klienta. O každého klienta pečuji tak, aby odcházel s účesem, který podtrhuje jeho jedinečnost a dokonalost."
 }

@@ -5,7 +5,7 @@
         {"name": "Služby", "href": "#services"},
         {"name": "Galerie", "href": "#gallery"},
         {"name": "Kontakt", "href": "#contact"},
-        {"name": "Rezervace", "href": "#booking"}
+        {"name": "Rezervace", "href": "tel:+420704286203"}
     ],
     "logos": {
         "main": "01_Assets/01_IMG/01_Main_Logo.png",

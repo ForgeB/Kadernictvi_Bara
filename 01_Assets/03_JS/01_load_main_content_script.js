@@ -68,7 +68,39 @@ function populateServices(servicesData) {
 
     servicesContainer.appendChild(servicesList);
 
-    // Add brands section from config AFTER services
+    // Add notes from servicesData (note1, note2, note3) above brands section
+    if (servicesData.note1 || servicesData.note2 || servicesData.note3) {
+        const notesDiv = document.createElement('div');
+        notesDiv.className = 'services-note';
+        notesDiv.style.textAlign = 'center';
+        notesDiv.style.marginTop = '40px';
+        notesDiv.style.padding = '20px';
+        notesDiv.style.background = 'white';
+        notesDiv.style.borderRadius = '10px';
+        notesDiv.style.borderLeft = '4px solid #667eea';
+        notesDiv.style.maxWidth = '700px';
+        notesDiv.style.marginLeft = 'auto';
+        notesDiv.style.marginRight = 'auto';
+        
+        if (servicesData.note1) {
+            const p1 = document.createElement('p');
+            p1.textContent = servicesData.note1;
+            notesDiv.appendChild(p1);
+        }
+        if (servicesData.note2) {
+            const p2 = document.createElement('p');
+            p2.textContent = servicesData.note2;
+            notesDiv.appendChild(p2);
+        }
+        if (servicesData.note3) {
+            const p3 = document.createElement('p');
+            p3.textContent = servicesData.note3;
+            notesDiv.appendChild(p3);
+        }
+        servicesContainer.appendChild(notesDiv);
+    }
+
+    // Add brands section from config AFTER notes
     if (siteConfig?.content?.brands && siteConfig.content.brands.length > 0) {
         const brandsSection = createBrandsSection(siteConfig.content.brands);
         servicesContainer.appendChild(brandsSection);
@@ -83,7 +115,7 @@ function createBrandsSection(brands) {
 
     // Brands title
     const brandsTitle = document.createElement('h3');
-    brandsTitle.textContent = 'Naše značky';
+    brandsTitle.textContent = 'Spolupracuji se značkami';
     brandsTitle.style.fontSize = '1.5rem';
     brandsTitle.style.fontWeight = '600';
     brandsTitle.style.color = '#2c3e50';
